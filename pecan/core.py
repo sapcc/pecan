@@ -477,7 +477,8 @@ class PecanBase(object):
 
         # if unsure ask the controller for the default content type
         content_types = cfg.get('content_types', {})
-        if not pecan_state['content_type']:
+        if (not pecan_state['content_type'] or
+                pecan_state['content_type'] == 'None'):
             # attempt to find a best match based on accept headers (if they
             # exist)
             accept = getattr(req.accept, 'header_value', '*/*') or '*/*'
